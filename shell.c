@@ -290,32 +290,6 @@ token_line(char *line)
 	return tokens;
 }
 
-//OPCIONAL 1
-/*int 
-here_document(char* line, int bg, char** redirections){
-
-    char** tokens;
-    int control = 0;
-    int i = 0;
-
-    //si no hay redirecciones ni & ...
-    if(bg == 0 && redirections[0] == NULL && redirections[1] == NULL){
-        if ((tokens = token_line(line)) != NULL){
-            while(1){
-
-                if(strcmp(tokens[i], "HERE{") == 0){
-warn("1");
-
-                    control = 1;
-                    break;
-                }
-                i++;
-            }
-        }
-    }
-    return control;
-}*/
-
 void
 pipes_maker(char **pipes, int bg, char **redirections)
 {
@@ -366,32 +340,7 @@ pipes_maker(char **pipes, int bg, char **redirections)
 				dup2(pipe1[0], STDIN_FILENO);	// Redirigir entrada estándar desde la tubería anterior
 				close(pipe1[0]);
 			}
-			//entrada
-			/*if(here_document(line, bg, redirections) == 1 && index == 0){
 
-			   int tmp_pipes[2];
-
-			   INTENTO        if(pipe(tmp_pipes) == -1){
-			   OPCIONAL 1
-			   perror("pipe fallo");
-			   return;
-			   }
-
-			   close(tmp_pipes[0]);
-			   dup2(pipe1[0], tmp_pipes[1]);
-
-			   while(fgets(buffer, sizeof(buffer), stdin) != NULL){
-
-			   if(strcmp(buffer, "}\n") == 0){
-
-			   break;
-			   }
-
-			   write(tmp_pipes[1], buffer, strlen(buffer));
-			   }
-			   close(tmp_pipes[0]);
-			   //write(pipe1[0], , 1);
-			   } */
 			if (redirections[0] != NULL) {
 
 				int fd =
